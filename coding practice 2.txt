@@ -1,0 +1,46 @@
+get all the products that belongs to 'clothing' category and price less than 700
+
+mysql> select *from sdet where category like 'clothing' and price<700;
+get all the
+
+2.get all the details of products that belongs to 'denim'brand with greater than 4.
+
+mysql> select *from sdet where brand like 'denim' and rating>4;
+
+3.get all th best-rated products with priceless than or equal to1000.
+
+mysql> select *from sdet where price>=1000 and rating>4;
+
+4.get all the product from the product table whose
+* rating is above 3.6 
+mysql> select *from sdet where rating>3.6 and price <1000 and brand ='puma';
+
+5.get all the products from, 'puma','denim', or  'nike' brand.
+
+mysql> select *from sdet where brand in('puma','denim','nike');
+
+6.get allthe details of products whose 
+*brand is 'redmi' with ratins greater than 4 or products that belongs to 'oneplus'brand
+
+mysql> select * from sdet where brand in('redmi','one plus')and rating>4.0;
+
+7. get only cakes from 'cadbury' and 'britannia' brands that have rating greater than 4.0
+
+mysql> select *from sdet where brand in('cadbury','britannia')and rating >4.0;
++----------------+----------+-------+-----------+--------+
+| name           | category | price | brand     | rating |
++----------------+----------+-------+-----------+--------+
+| chocolate cake | cakes    |    90 | britannia |    4.9 |
+| vanilla cake   | cakes    |    85 | cadbury   |    4.9 |
++----------------+----------+-------+-----------+--------+
+2 rows in set (0.00 sec)
+
+8.get all the details fromof the product frm the product table whose 
+*brand is 'puma'and rating greater than 3.5 or
+*brand is 'denim' and rating greater than 4.0
+
+mysql> select * from sdet where(brand ='puma' and rating>3.5)or (brand='denim' and rating>4.0);
+
+9.get all the shirts available in 'puma' ,'nike',or 'levis' brands excluding that black colour shirts 
+
+mysql> select * from sdet where brand in ('puma','levis','nike')and name<>'black shirt';

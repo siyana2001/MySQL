@@ -1,0 +1,62 @@
+1.a new player has joined the tournament. write an sql query to add the following details to the player table
+
+mysql> insert into players value("ram", 28, 125);
+Query OK, 1 row affected (0.04 sec)
+
+2. three new player have joined the tournament.write a sql query to add thefollowing detils of the players table
+
+mysql> insert into players value("raj",26,120),("charan",25,173),("ravan",20,152);
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+3.get all the details of the playrs from th player table.
+expected output format.
+
+mysql> select *from players limit 2 offset 0;
+
+
+4. update age of "shyam"to 30 inthe player table 
+
+mysql> insert into players value("shyam", 30,130);
+Query OK, 1 row affected (0.11 sec)
+
+5.delete player 'david' from the player table.
+
+mysql> delete from players where name= "david";
+Query OK, 1 row affected (0.13 sec)
+
+6. we have to store the strikr-rate of players in the database. make necessary changes to the existing player tableto store th data
+
+mysql> update players set strike_rate= 123.26 where name="ram";
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+7.get name and age from the all the players from the player table
+
+mysql> select name, age from players;
++--------+------+
+| name   | age  |
++--------+------+
+| ram    |   28 |
+| raj    |   26 |
+| charan |   25 |
+| ravan  |   20 |
+| shyam  |   30 |
++--------+------+
+5 rows in set (0.00 sec)
+
+8.renamehe column name to full_name in the player table
+
+mysql>  alter table players change name full_name char(20);
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+9.delete player table from the database
+
+mysql> delete from players;
+Query OK, 5 rows affected (0.10 sec)
+
+mysql> select *from players;
+Empty set (0.00 sec)
+
+

@@ -1,0 +1,40 @@
+ 1. get all details of product from the 'puma' brand.
+
+mysql> select *from prod_det where brand like 'p%';
+2.user would like to sop for 'jeans' .Acommon pattern in allthejeans product is that their name ends with jeans . help the users get details ofrequired product.
+
+mysql> select *from prod_det where name like '%jeans';
+
+3.user wants to purchase 'bourbon small' ;bourbon with extra cookies; or producs from bourbon .retrive all details pf such product accordingly.
+
+mysql> select *from prod_det where name like 'bourbon%';
+
+4.list all the 'chips'in the database.
+
+mysql> select *from prod_det where name like '%chips';
+
+5.get the products whose name matches the followings pattern:
+name ends with at least four character
+mysql> select *from prod_det where name like 'bou____';
++---------+----------+-------+----------+--------+
+| name    | category | price | brand    | rating |
++---------+----------+-------+----------+--------+
+| bourbon | food     |    35 | sunfeast |   4.10 |
++---------+----------+-------+----------+--------+
+1 row in set (0.00 sec)
+out of the last 4 charcters,first character is 'h' and the third character  is'r'.
+
+mysql> select *from prod_det where name like 'h_r%';
+
+6.get all the product whose price is less than or equal to 1000:
+
+mysql> select *from prod_det where price <=1000;
+7.get all the best product:
+note:products whose rating is above 4.0 are considered as best rated products.
+
+mysql> select *from prod_det where rating >4.0;
+
+
+
+
+

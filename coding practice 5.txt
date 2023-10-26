@@ -1,0 +1,63 @@
+mysql> create table sailors(sid int primary key,name varchar(30)not null,dob date ,gender char(10));
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> create table boats(bid int primary key, btype char(1),bname varchar(30)unique,color char(20));
+Query OK, 0 rows affected (0.21 sec)
+mysql> create table sails(sid int,bid int, dot date,shift char(2),foreign key(sid)references sailors(sid),foreign key(bid)references boats(bid),primary key(sid,bid,dot));
+Query OK, 0 rows affected (0.47 sec)
+
+mysql> insert into sailors values(1,'ayesha','1987-02-28','male');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> update sailors set gender='female' where sid=1;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> insert into sailors values(2,'sheik','1989-09-18','male');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into boats values(1,'d','black boat','black');
+Query OK, 1 row affected (0.44 sec)
+
+mysql> insert into boats values(2,'s','white boat','white');
+Query OK, 1 row affected (0.35 sec)
+
+mysql> insert into sails values(1,1,'2023-06-30','fn');
+Query OK, 1 row affected (0.34 sec)
+
+mysql> insert into sails values(2,2,'2023-06-29','an');
+Query OK, 1 row affected (0.10 sec)
+
+
+mysql> select *from sailors;
++-----+--------+------------+--------+
+| sid | name   | dob        | gender |
++-----+--------+------------+--------+
+|   1 | ayesha | 1987-02-28 | female |
+|   2 | sheik  | 1989-09-18 | male   |
++-----+--------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from boats;
++-----+-------+------------+-------+
+| bid | btype | bname      | color |
++-----+-------+------------+-------+
+|   1 | d     | black boat | black |
+|   2 | s     | white boat | white |
++-----+-------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select *from sails;
++-----+-----+------------+-------+
+| sid | bid | dot        | shift |
++-----+-----+------------+-------+
+|   1 |   1 | 2023-06-30 | fn    |
+|   2 |   2 | 2023-06-29 | an    |
++-----+-----+------------+-------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+

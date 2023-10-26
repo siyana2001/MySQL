@@ -1,0 +1,185 @@
+1.      Create a Student Table to store name, age and score of students
+
+ student> db.createCollection("studet")
+{ ok: 1 }
+student> db.studet.insertOne({"name":"sana","age":22,"score":99})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a055118c67436735841562")
+}
+
+2.      In a typical e-commerce application, we need to store the following customer details.
+
+Create a collection as customer to store the data.
+
+student> db.createCollection("customer")
+{ ok: 1 }
+student> db.customer.insertOne({"customerid":01,"firstname":"muthu","lastname":"meeran","dob":"2002-01-02","address":"168,indira street","phonenumber":9026475928})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a056bc8c67436735841563")
+}
+3.In a typical e-commerce application, we need to store the following order details.
+
+Create a collection as order_det to store the data.
+student> db.createCollection("order_det")
+{ ok: 1 }
+student> db.order_det.insertOne({"orderid":001,"customerid":01,"order_datetime":"2023-09-23","shipped_datetime":"2023-09-24","total_amount":2500})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a05a2e8c67436735841564")
+}
+
+4.      To insert at least 6 documents in all collection.
+student> db.order_det.insertOne({"orderid":001,"customerid":01,"order_datetime":"2023-09-23","shipped_datetime":"2023-09-24","total_amount":2500})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a05a2e8c67436735841564")
+}
+student> db.order_det.insertOne({"orderid":209,"customerid":02,"order_datetime":"2023-08-12","shipped_datetime":"2023-08-14","total_amount":1500})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a05a678c67436735841565")
+}
+student> db.order_det.insertOne({"orderid":308,"customerid":03,"order_datetime":"2023-06-12","shipped_datetime":"2023-06-11","total_amount":1280})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a05aa08c67436735841566")
+student>
+student> db.order_det.insertOne({"orderid":359,"customerid":04,"order_datetime":"2023-04-30","shipped_datetime":"2023-05-01","total_amount":2600})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a05add8c67436735841567")
+}
+student> db.order_det.insertOne({"orderid":409,"customerid":05,"order_datetime":"2023-10-27","shipped_datetime":"2023-10-28","total_amount":980})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a05b158c67436735841568")
+}
+student> db.order_det.insertOne({"orderid":798,"customerid":06,"order_datetime":"2023-10-22","shipped_datetime":"2023-12-23","total_amount":2900})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a05b458c67436735841569")
+}
+
+
+5.To display documents in a pretty format using find ().
+student> db.order_det.find().pretty()
+[
+  {
+    _id: ObjectId("64a05a2e8c67436735841564"),
+    orderid: 1,
+    customerid: 1,
+    order_datetime: '2023-09-23',
+    shipped_datetime: '2023-09-24',
+    total_amount: 2500
+  },
+  {
+    _id: ObjectId("64a05a678c67436735841565"),
+    orderid: 209,
+    customerid: 2,
+    order_datetime: '2023-08-12',
+    shipped_datetime: '2023-08-14',
+    total_amount: 1500
+  },
+  {
+    _id: ObjectId("64a05aa08c67436735841566"),
+    orderid: 308,
+    customerid: 3,
+    order_datetime: '2023-06-12',
+    shipped_datetime: '2023-06-11',
+    total_amount: 1280
+  },
+  {
+    _id: ObjectId("64a05add8c67436735841567"),
+    orderid: 359,
+    customerid: 4,
+    order_datetime: '2023-04-30',
+    shipped_datetime: '2023-05-01',
+    total_amount: 2600
+  },
+  {
+    _id: ObjectId("64a05b158c67436735841568"),
+    orderid: 409,
+    customerid: 5,
+    order_datetime: '2023-10-27',
+    shipped_datetime: '2023-10-28',
+    total_amount: 980
+  },
+  {
+    _id: ObjectId("64a05b458c67436735841569"),
+    orderid: 798,
+    customerid: 6,
+    order_datetime: '2023-10-22',
+    shipped_datetime: '2023-12-23',
+    total_amount: 2900
+  }
+6.Create a database as Employee and create collection as emp_det, insert five documents and remove collection and delete the employee. Use drop () and show method to differentiate deletion of collections and database.
+
+test> db.emp_det.insertOne({"emp_id":04,"emp_det":"divya","age":24,"salary":25000})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a0683e91efdf2d5bf80e85")
+}
+test> db.emp_det.insertOne({"emp_id":03,"emp_det":"kishore","age":22,"salary":22000})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a0684791efdf2d5bf80e86")
+}
+test> db.emp_det.insertOne({"emp_id":02,"emp_det":"sathish","age":22,"salary":24000})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a0684c91efdf2d5bf80e87")
+}
+test> db.emp_det.insertOne({"emp_id":01,"emp_det":"sana","age":23,"salary":25000})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64a0686091efdf2d5bf80e88")
+}
+test> db.emp_det.find().pretty()
+[
+  {
+    _id: ObjectId("64a067fb91efdf2d5bf80e84"),
+    emp_id: 5,
+    emp_det: 'ashok',
+    age: 27,
+    salary: 26000
+  },
+  {
+    _id: ObjectId("64a0683e91efdf2d5bf80e85"),
+    emp_id: 4,
+    emp_det: 'divya',
+    age: 24,
+    salary: 25000
+  },
+  {
+    _id: ObjectId("64a0684791efdf2d5bf80e86"),
+    emp_id: 3,
+    emp_det: 'kishore',
+    age: 22,
+    salary: 22000
+  },
+  {
+    _id: ObjectId("64a0684c91efdf2d5bf80e87"),
+    emp_id: 2,
+    emp_det: 'sathish',
+    age: 22,
+    salary: 24000
+  },
+  {
+    _id: ObjectId("64a0686091efdf2d5bf80e88"),
+    emp_id: 1,
+    emp_det: 'sana',
+    age: 23,
+    salary: 25000
+  }
+test> db.emp_det.drop()
+true
+test> db.emp_det.find().pretty()
+
+test> db.dropDatabase()
+{ ok: 1, dropped: 'test' }
+test>
+]
+ 
+ 

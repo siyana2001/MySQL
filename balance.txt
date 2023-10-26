@@ -1,0 +1,69 @@
+1.create a student table to store name, age, and score of students
+name:string
+age:nmber
+score:floating point
+
+test> show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   72.00 KiB
+test> use siyana
+switched to db siyana
+siyana> db.createcollection("stutab")
+TypeError: db.createcollection is not a function
+siyana> db.createCollection("stutab")
+{ ok: 1 }
+siyana> db.stutab.insertOne([{"name":"sana","age":21,"score":97.99}])
+{
+  acknowledged: true,
+  insertedId: ObjectId("649ec317680ced4b6a5b1107")
+}
+siyana> db.stutab.find().pretty()
+[
+  {
+    '0': { name: 'sana', age: 21, score: 97.99 },
+    _id: ObjectId("649ec317680ced4b6a5b1107")
+  }
+2. in a typical e-commerce application,we need to store the following customer details.
+
+siyana> db.cusdet.insertOne([{"customerid":01,"firstname":"saro","lastname":"v","dob":"2001-04-27","address":"indirastreet","phonenumber":9908876533}])
+{
+  acknowledged: true,
+  insertedId: ObjectId("649ecb11680ced4b6a5b1108")
+}
+siyana> db.cusdet.find().pretty()
+[
+  {
+    '0': {
+      customerid: 1,
+      firstname: 'saro',
+      lastname: 'v',
+      dob: '2001-04-27',
+      address: 'indirastreet',
+      phonenumber: 9908876533
+    },
+    _id: ObjectId("649ecb11680ced4b6a5b1108")
+  }
+ 3.in a typical e-commerce application , we need to store the following order details
+create a collection as order_det to store the data
+siyana> db.cusdet.find().pretty()
+[
+  {
+    '0': {
+      customerid: 1,
+siyana> db.e_com.find().pretty()
+[     lastname: 'v',
+  {   dob: '2001-04-27',
+    '0': {ess: 'indirastreet',
+      orderid: 201,9908876533
+      customerid: 1,
+      order_datetime: '2023-09-24',6a5b1108")
+      shipped_datetime: '2023-09-25',
+      total_number: '4500'
+    },> db.ecom
+    _id: ObjectId("649ed048680ced4b6a5b1109")
+  }
+]
+4.to insert at least 6 documents in all collection.
+
+

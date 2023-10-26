@@ -1,0 +1,271 @@
+1. display the total number of employee
+
+mysql> select count(ename)from emptab;
++--------------+
+| count(ename) |
++--------------+
+|            5 |
++--------------+
+1 row in set (0.09 sec)
+2.display the total salary and total commission
+
+mysql> select sum(salary) from emptab;
++-------------+
+| sum(salary) |
++-------------+
+|      288000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(commission)from emptab;
++-----------------+
+| sum(commission) |
++-----------------+
+|           20500 |
++-----------------+
+1 row in set (0.00 sec)
+3.display the max salary from employee table.
+mysql> select max(salary) from emptab;
++-------------+
+| max(salary) |
++-------------+
+|       78000 |
++-------------+
+1 row in set (0.07 sec)
+
+4.display the hiredate ofjuniormost employee
+
+mysql> select min(hiredate) from emptab;
++---------------+
+| min(hiredate) |
++---------------+
+| 2020-08-11    |
++---------------+
+1 row in set (0.06 sec)
+5.display the average salary fro emp
+
+mysql> select avg(salary) from emptab;
++-------------+
+| avg(salary) |
++-------------+
+|  57600.0000 |
++-------------+
+1 row in set (0.00 sec)
+6.display max salar being paid to clerk.
+mysql> select max(salary)from emptab where dept='clerk';
++-------------+
+| max(salary) |
++-------------+
+|       27000 |
++-------------+
+1 row in set (0.06 sec)
+
+8.display the avg salary drawn br managers
+
+mysql> select avg (salary)from emptab where dept='manager';
++--------------+
+| avg (salary) |
++--------------+
+|   57000.0000 |
++--------------+
+1 row in set (0.00 sec)
+
+10.display min salarydrawn by salesman
+ 
+mysql> select min(salary)from emptab where dept='salesman';
++-------------+
+| min(salary) |
++-------------+
+|       30000 |
++-------------+
+1 row in set (0.00 sec)
+9.display the avgsalary from analyst working in dept no 20
+mysql> select min(salary)from emptab where dept='analyst';
++-------------+
+| min(salary) |
++-------------+
+|       29000 |
++-------------+
+1 row in set (0.00 sec)
+7.display the max salary eing paid on deptno 20
+mysql> select max(salary)from emptab where deptno=20;
++-------------+
+| max(salary) |
++-------------+
+|       78000 |
++-------------+
+1 row in set (0.00 sec)
+11.display dept no and totalnum of employeetablee
+a.mysql> select deptno from emptab;
+b.mysql> select count(empid) from emptab;
++--------------+
+| count(empid) |
++--------------+
+|            9 |
++--------------+
+1 row in set (0.15 sec)
+13.display dept no and total salary for eah dept;
+mysql> select deptno , sum(salary) as totalsalary from emptab group by deptno;
+
+12.display the various jobs and tota no of employees wrking in each jon group
+mysql> select dept, count(*) from emptab group by dept;
++------------+----------+
+| dept       | count(*) |
++------------+----------+
+| hardware   |        1 |
+| technical  |        1 |
+| developer  |        1 |
+| accountant |        1 |
+| finance    |        1 |
+| clerk      |        2 |
+| manager    |        1 |
+| salesman   |        1 |
++------------+----------+
+8 rows in set (0.00 sec)
+14.display the deptno max salary from each dept
+mysql> select max(salary),count(deptno)from emptab group by deptno;
++-------------+---------------+
+| max(salary) | count(deptno) |
++-------------+---------------+
+|       75000 |             3 |
+|       78000 |             1 |
+|       45000 |             1 |
+|       35000 |             1 |
+|       27000 |             1 |
+|       57000 |             1 |
+|       30000 |             1 |
++-------------+---------------+
+7 rows in set (0.00 sec)
+ 15.display various jobs and total salary for each job
+mysql> select dept,sum(salary)from emptab group by dept;
++------------+-------------+
+| dept       | sum(salary) |
++------------+-------------+
+| hardware   |       75000 |
+| technical  |       55000 |
+| developer  |       78000 |
+| accountant |       45000 |
+| finance    |       35000 |
+| clerk      |       56000 |
+| manager    |       57000 |
+| salesman   |       30000 |
++------------+-------------+
+8 rows in set (0.00 sec)
+
+16.display ach job  along with min salary being paid in each job group
+
+mysql> select dept,min(salary) from emptab group by dept;
++------------+-------------+
+| dept       | min(salary) |
++------------+-------------+
+| hardware   |       75000 |
+| technical  |       55000 |
+| developer  |       78000 |
+| accountant |       45000 |
+| finance    |       35000 |
+| clerk      |       27000 |
+| manager    |       57000 |
+| salesman   |       30000 |
++------------+-------------+
+8 rows in set (0.00 sec)
+17.display the dept no with more thaan three employee in each department
+mysql> select count(deptno) from emptab group by deptno having count(*)>=3;
++---------------+
+| count(deptno) |
++---------------+
+|             3 |
++---------------+
+1 row in set (0.00 sec)
+
+18.display the various job along with total salary for each ofth job where total salary is greater than 2500
+mysql> select dept,sum(salary)from emptab where salary>2500 group by dept;
++-----------+-------------+
+| dept      | sum(salary) |
++-----------+-------------+
+| hardware  |       75000 |
+| technical |       55000 |
+| developer |       78000 |
+| manager   |       57000 |
++-----------+-------------+
+4 rows in set (0.00 sec)
+19.display the various jobs along with total no of employee in each job .the output should contain only those jobs wuth more than three emloyee
+
+mysql> select dept, count(dept) from emptab group by dept having count(*)>3;
++-------+-------------+
+| dept  | count(dept) |
++-------+-------------+
+| clerk |           4 |
++-------+-------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

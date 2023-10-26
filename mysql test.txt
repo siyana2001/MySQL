@@ -1,0 +1,167 @@
+ 1. Create a table with suitable constraints and fill the table with following dataset.
+mysql> create table teacherdet(teacherid int primary key, name varchar(30),dept char(30),dateofadm date,salary double(10,2),gender char(10));
+Query OK, 0 rows affected, 1 warning (2.31 sec)
+
+mysql>
+mysql> desc teacherdet;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| teacherid | int          | NO   | PRI | NULL    |       |
+| name      | varchar(30)  | YES  |     | NULL    |       |
+| dept      | char(30)     | YES  |     | NULL    |       |
+| dateofadm | date         | YES  |     | NULL    |       |
+| salary    | double(10,2) | YES  |     | NULL    |       |
+| gender    | char(10)     | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+6 rows in set (0.18 sec)
+
+mysql> insert into teacherdet values(01,'siva','computer','2019-02-15',12000.00,'male');
+Query OK, 1 row affected (0.20 sec)
+
+mysql> insert into teacherdet values(02,'angel','history','2020-07-19',10000.00,'female');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into teacherdet values(03,'divya','computer','2021-08-19',15000.00,'female');
+Query OK, 1 row affected (0.09 sec)
+mysql> insert into teacherdet values(04,'khan','history','2022-05-24',7000.00,'male');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into teacherdet values(05,'hanisha','computer','2020-08-14',17000.00,'female');
+Query OK, 1 row affected (1.93 sec)
+
+mysql> insert into teacherdet values(06,'david','computer','2020-07-14',19000.00,'male');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into teacherdet values(07,'lalitha','history','2022-01-30',9000.00,'female');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into teacherdet values(08,'yuvan','history','2022-08-07',8000.00,'male');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select *from teacherdet;
++-----------+---------+----------+------------+----------+--------+
+| teacherid | name    | dept     | dateofadm  | salary   | gender |
++-----------+---------+----------+------------+----------+--------+
+|         1 | siva    | computer | 2019-02-15 | 12000.00 | male   |
+|         2 | angel   | history  | 2020-07-19 | 10000.00 | female |
+|         3 | divya   | computer | 2021-08-19 | 15000.00 | female |
+|         4 | khan    | history  | 2022-05-24 |  7000.00 | male   |
+|         5 | hanisha | computer | 2020-08-14 | 17000.00 | female |
+|         6 | david   | computer | 2020-07-14 | 19000.00 | male   |
+|         7 | lalitha | history  | 2022-01-30 |  9000.00 | female |
+|         8 | yuvan   | history  | 2022-08-07 |  8000.00 | male   |
++-----------+---------+----------+------------+----------+--------+
+8 rows in set (0.07 sec)
+
+2.. Write an SQL Query to select all the information of teachers in computer department.
+
+mysql> select *from teacherdet where dept = "computer";
++-----------+---------+----------+------------+----------+--------+
+| teacherid | name    | dept     | dateofadm  | salary   | gender |
++-----------+---------+----------+------------+----------+--------+
+|         1 | siva    | computer | 2019-02-15 | 12000.00 | male   |
+|         3 | divya   | computer | 2021-08-19 | 15000.00 | female |
+|         5 | hanisha | computer | 2020-08-14 | 17000.00 | female |
+|         6 | david   | computer | 2020-07-14 | 19000.00 | male   |
++-----------+---------+----------+------------+----------+--------+
+4 rows in set (0.07 sec)
+
+3.Write a query to list the name of female teachers in History department.
+mysql> select name from teacherdet where dept='history' and gender='female';
++---------+
+| name    |
++---------+
+| angel   |
+| lalitha |
++---------+
+2 rows in set (0.00 sec)
+
+mysql>
+4.list all names of teachers with date of admission in ascending order
+
+mysql> select name, dateofadm from teacherdet order by dateofadm;
++---------+------------+
+| name    | dateofadm  |
++---------+------------+
+| siva    | 2019-02-15 |
+| david   | 2020-07-14 |
+| angel   | 2020-07-19 |
+| hanisha | 2020-08-14 |
+| divya   | 2021-08-19 |
+| lalitha | 2022-01-30 |
+| khan    | 2022-05-24 |
+| yuvan   | 2022-08-07 |
++---------+------------+
+8 rows in set (0.02 sec)
+
+5.display Teacher’s name, Department, and Salary of male teacher.
+mysql> select name, dept, salary from teacherdet where gender= 'male';
++-------+----------+----------+
+| name  | dept     | salary   |
++-------+----------+----------+
+| siva  | computer | 12000.00 |
+| khan  | history  |  7000.00 |
+| david | computer | 19000.00 |
+| yuvan | history  |  8000.00 |
++-------+----------+----------+
+4 rows in set (0.00 sec)
+
+6.display Teacher’s name, Department, and Salary of male teacher.
+mysql> select count(*)from teacherdet where salary <10000;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.11 sec)
+7.Insert a new record in the Teacher table with the following data: (8, "Mersha", "Computer", '2000-01-01', 12000.0, 'M').
+mysql> insert into teacherdet values (9,'mersha','computer','2000-01-01',12000.00,'male');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select *from teacherdet;
++-----------+---------+----------+------------+----------+--------+
+| teacherid | name    | dept     | dateofadm  | salary   | gender |
++-----------+---------+----------+------------+----------+--------+
+|         1 | siva    | computer | 2019-02-15 | 12000.00 | male   |
+|         2 | angel   | history  | 2020-07-19 | 10000.00 | female |
+|         3 | divya   | computer | 2021-08-19 | 15000.00 | female |
+|         4 | khan    | history  | 2022-05-24 |  7000.00 | male   |
+|         5 | hanisha | computer | 2020-08-14 | 17000.00 | female |
+|         6 | david   | computer | 2020-07-14 | 19000.00 | male   |
+|         7 | lalitha | history  | 2022-01-30 |  9000.00 | female |
+|         8 | yuvan   | history  | 2022-08-07 |  8000.00 | male   |
+|         9 | mersha  | computer | 2000-01-01 | 12000.00 | male   |
++-----------+---------+----------+------------+----------+--------+
+9 rows in set (0.00 sec)
+8.List the teacher details who are getting the minimum salary.
+mysql> select * from teacherdet where salary =( select min(salary) from teacherdet);
+
+
++-----------+------+---------+------------+---------+--------+
+| teacherid | name | dept    | dateofadm  | salary  | gender |
++-----------+------+---------+------------+---------+--------+
+|         4 | khan | history | 2022-05-24 | 7000.00 | male   |
++-----------+------+---------+------------+---------+--------+
+1 row in set (0.11 sec)
+
+9.  List the teacher detail who is getting the second minimum salary.
+
+mysql> SELECT * FROM Teacher WHERE Salary = (SELECT MIN(Salary) FROM Teacher WHERE Salary > (SELECT MIN(Salary) FROM Teacher));
++-----------+-------+------------+--------------------+--------+
+| teacherid | Name  |       Dept | DateOfAdm | Salary | Gender |
++-----------+-------+------------+-----------+--------+--------+
+|         8 | yuvan | History    | 2022-08-07|8000.00 | male   |
++-----------+-------+------------+-----------+--------+--------+
+1 row in set (0.00 sec)
+
+10.List down the average salary of the teachers belonging to the History department.
+
+mysql> select avg(salary) as averagesalary from teacherdet where dept='history';
++---------------+
+| averagesalary |
++---------------+
+|   8500.000000 |
++---------------+
+1 row in set (0.00 sec)
+

@@ -1,0 +1,398 @@
+1. write a maangdb query to display atleast 10 details of the document of book_id, btitle, authos im array and price for all the document in te collection bookstore.
+
+siyana> db.createCollection("bookstore")
+{ ok: 1 }
+siyana> db.bookstore.insertMany([{"bookid":01,"Btitle":"the past","Authors":"george","price":2399,}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("649fe11a2f1d17796bc698c2") }
+}
+siyana> db.bookstore.insertMany([{"bookid":02,"Btitle":"the sceret","Authors":"george","price":2399,}],[{"bookid":03,"Btitle":"the path","Authors":"george","price":1600}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("649fe1ee2f1d17796bc698c3") }
+}
+siyana> db.bookstore.insertMany([{"bookid":04,"Btitle":"security council","Authors":"hemanth","price":1000,}],[{"bookid":05,"Btitle":"divine","Authors":"smith","price":900}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("649fe2702f1d17796bc698c4") }
+}
+siyana> db.bookstore.insertMany([{"bookid":06,"Btitle":"women power","Authors":"saroja","price":1679,}],[{"bookid":07,"Btitle":"ilakiyam","Authors":"ravidas","price":1900}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("649fe2f52f1d17796bc698c5") }
+}
+siyana> db.bookstore.insertMany([{"bookid":08,"Btitle":"space","Authors":"seldon","price":2999,}],[{"bookid":09,"Btitle":"mars","Authors":"david","price":500}],[{"bookid":10,"Btitle":"slight","Authors":"thomas","price":1000}])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("649fe3c62f1d17796bc698c6") }
+
+2.write a mangodb query to display the field btitle,authors and price but exclude the bookid for all the document in the collection bookstore
+
+siyana> db.bookstore.find({},{"Btitle":1,"Authors":1,"price":1,_id:0})
+[
+  { Btitle: 'the past', Authors: 'george', price: 2399 },
+  { Btitle: 'the sceret', Authors: 'george', price: 2399 },
+  { Btitle: 'security council', Authors: 'hemanth', price: 1000 },
+  { Btitle: 'women power', Authors: 'saroja', price: 1679 },
+  { Btitle: 'space', Authors: 'seldon', price: 2999 }
+]
+
+3. Write a MongoDB query to display the first 3 books based on similar authors.
+
+siyana> db.bookstore.find().limit(3)
+[
+  {
+    _id: ObjectId("649fe11a2f1d17796bc698c2"),
+    bookid: 1,
+    Btitle: 'the past',
+    Authors: 'george',
+    price: 2399
+  },
+  {
+    _id: ObjectId("649fe1ee2f1d17796bc698c3"),
+    bookid: 2,
+    Btitle: 'the sceret',
+    Authors: 'george',
+    price: 2399
+  },
+  {
+    _id: ObjectId("649fe2702f1d17796bc698c4"),
+    bookid: 4,
+    Btitle: 'security council',
+    Authors: 'hemanth',
+    price: 1000
+  }
+]
+4. Write a MongoDB query to find the book price more than 1500. 
+
+siyana> db.bookstore.find({price:{$gt:1500}})
+[
+  {
+    _id: ObjectId("649fe11a2f1d17796bc698c2"),
+    bookid: 1,
+    Btitle: 'the past',
+    Authors: 'george',
+    price: 2399
+  },
+  {
+    _id: ObjectId("649fe1ee2f1d17796bc698c3"),
+    bookid: 2,
+    Btitle: 'the sceret',
+    Authors: 'george',
+    price: 2399
+  },
+  {
+    _id: ObjectId("649fe2f52f1d17796bc698c5"),
+    bookid: 6,
+    Btitle: 'women power',
+    Authors: 'saroja',
+    price: 1679
+  },
+  {
+    _id: ObjectId("649fe3c62f1d17796bc698c6"),
+    bookid: 8,
+siyana>
+    Authors: 'seldon',
+    price: 2999
+  },
+  {
+    _id: ObjectId("649feb532f1d17796bc698c9"),
+    bookid: 7,
+    Btitle: 'ilakiyam',
+    Authors: 'ravidas',
+    price: 1900
+  }]
+
+
+5. Write a MongoDB query to find the book title who's price is  more than 800 but less than 2000.
+siyana> db.bookstore.find({price:{$gt:800,$lt:2000}},{Btitle:1})
+[
+  {
+    _id: ObjectId("649fe2702f1d17796bc698c4"),
+    Btitle: 'security council'
+  },
+  { _id: ObjectId("649fe2f52f1d17796bc698c5"), Btitle: 'women power' },
+  { _id: ObjectId("649feb2a2f1d17796bc698c8"), Btitle: 'slight' },
+  { _id: ObjectId("649feb532f1d17796bc698c9"), Btitle: 'ilakiyam' },
+  { _id: ObjectId("649feb802f1d17796bc698ca"), Btitle: 'divine' },
+  { _id: ObjectId("649feba72f1d17796bc698cb"), Btitle: 'the path' }
+]
+6. Write a MongoDB query to arrange the book name of the bookstore in ascending order along with all the columns. 
+
+siyana> db.bookstore.find().sort({Btitle:1})
+[
+  {
+    _id: ObjectId("649feb802f1d17796bc698ca"),
+    bookid: 5,
+    Btitle: 'divine',
+    Authors: 'smith',
+    price: 900
+  },
+  {
+    _id: ObjectId("649feb532f1d17796bc698c9"),
+    bookid: 7,
+    Btitle: 'ilakiyam',
+    Authors: 'ravidas',
+    price: 1900
+  },
+  {
+    _id: ObjectId("649feb132f1d17796bc698c7"),
+    bookid: 9,
+    Btitle: 'mars',
+    Authors: 'david',
+    price: 500
+  },
+  {
+    _id: ObjectId("649fe2702f1d17796bc698c4"),
+    bookid: 4,
+    Btitle: 'security council',
+    Authors: 'hemanth',
+    price: 1000
+  },
+  {
+    _id: ObjectId("649feb2a2f1d17796bc698c8"),
+    bookid: 10,
+    Btitle: 'slight',
+    Authors: 'thomas',
+    price: 1000
+  },
+  {
+    _id: ObjectId("649fe3c62f1d17796bc698c6"),
+    bookid: 8,
+    Btitle: 'space',
+    Authors: 'seldon',
+    price: 2999
+  },
+  {
+    _id: ObjectId("649fe11a2f1d17796bc698c2"),
+    bookid: 1,
+    Btitle: 'the past',
+    Authors: 'george',
+    price: 2399
+  },
+  {
+    _id: ObjectId("649feba72f1d17796bc698cb"),
+    bookid: 3,
+    Btitle: 'the path',
+    Authors: 'george',siyana> db.bookstore.find().sort({Btitle:-1})
+[
+  {
+    _id: ObjectId("649fe2f52f1d17796bc698c5"),
+    bookid: 6,
+    Btitle: 'women power',
+    Authors: 'saroja',
+    price: 1679
+  }
+
+7.Write a MongoDB query to arrange the book name of the bookstore in Descending order along with all the columns. 
+  
+
+ siyana> db.bookstore.find().sort({Btitle:-1})
+[
+  {
+    _id: ObjectId("649fe2f52f1d17796bc698c5"),
+    bookid: 6,
+    Btitle: 'women power',
+    Authors: 'saroja',
+    price: 1679
+  },
+  {
+    _id: ObjectId("649fe1ee2f1d17796bc698c3"),
+    bookid: 2,
+    Btitle: 'the sceret',
+    Authors: 'george',
+    price: 2399
+  },
+  {
+    _id: ObjectId("649feba72f1d17796bc698cb"),
+    bookid: 3,
+    Btitle: 'the path',
+    Authors: 'george',
+    price: 1600
+  },
+  {
+    _id: ObjectId("649fe11a2f1d17796bc698c2"),
+    bookid: 1,
+    Btitle: 'the past',
+    Authors: 'george',
+    price: 2399
+  },
+  {
+    _id: ObjectId("649fe3c62f1d17796bc698c6"),
+    bookid: 8,
+    Btitle: 'space',
+    Authors: 'seldon',
+    price: 2999
+  },
+  {
+    _id: ObjectId("649feb2a2f1d17796bc698c8"),
+    bookid: 10,
+    Btitle: 'slight',
+    Authors: 'thomas',
+    price: 1000
+  },
+  {
+    _id: ObjectId("649fe2702f1d17796bc698c4"),
+    bookid: 4,
+    Btitle: 'security council',
+    Authors: 'hemanth',
+    price: 1000
+  },
+  {
+    _id: ObjectId("649feb132f1d17796bc698c7"),
+    bookid: 9,
+    Btitle: 'mars',
+    Authors: 'david',
+    price: 500
+  },
+  {
+    _id: ObjectId("649feb532f1d17796bc698c9"),
+    bookid: 7,
+    Btitle: 'ilakiyam',
+    Authors: 'ravidas',
+    price: 1900
+  },
+  {
+    _id: ObjectId("649feb802f1d17796bc698ca"),
+    bookid: 5,
+    Btitle: 'divine',
+    Authors: 'smith',
+    price: 900
+  }
+]
+
+8. Write a MongoDB query to know whether the author in the authors list.
+
+siyana> db.bookstore.findOne({"Authors":"george"})
+{
+  _id: ObjectId("649fe11a2f1d17796bc698c2"),
+  bookid: 1,
+  Btitle: 'the past',
+  Authors: 'george',
+  price: 2399
+}
+9..Write a MongoDB query to update & increase the book price Rs.500 in all book name as "MongoDB Practice".
+
+siyana> db.bookstore.updateMany({"Btitle":"divine"},{$inc:{"price":500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+siyana> db.bookstore.find().pretty()
+[
+  {
+    _id: ObjectId("649fe11a2f1d17796bc698c2"),
+    bookid: 1,
+    Btitle: 'the past',
+siyana>
+    price: 2399
+  },
+  {
+    _id: ObjectId("649fe1ee2f1d17796bc698c3"),
+    bookid: 2,
+    Btitle: 'the sceret',
+    Authors: 'george',
+    price: 2399
+  },
+  {
+    _id: ObjectId("649fe2702f1d17796bc698c4"),
+    bookid: 4,
+    Btitle: 'security council',
+    Authors: 'hemanth',
+    price: 1000
+  },
+  {
+    _id: ObjectId("649fe2f52f1d17796bc698c5"),
+    bookid: 6,
+    Btitle: 'women power',
+    Authors: 'saroja',
+    price: 1679
+  },
+  {
+    _id: ObjectId("649fe3c62f1d17796bc698c6"),
+    bookid: 8,
+    Btitle: 'space',
+    Authors: 'seldon',
+    price: 2999
+  },
+  {
+    _id: ObjectId("649feb132f1d17796bc698c7"),
+    bookid: 9,
+    Btitle: 'mars',
+    Authors: 'david',
+    price: 500
+  },
+  {
+    _id: ObjectId("649feb2a2f1d17796bc698c8"),
+    bookid: 10,
+    Btitle: 'slight',
+    Authors: 'thomas',
+    price: 1000
+  },
+  {
+    _id: ObjectId("649feb532f1d17796bc698c9"),
+    bookid: 7,
+    Btitle: 'ilakiyam',
+    Authors: 'ravidas',
+    price: 1900
+  },
+  {
+    _id: ObjectId("649feb802f1d17796bc698ca"),
+    bookid: 5,
+    Btitle: 'divine',
+    Authors: 'smith',
+    price: 1400
+  },
+  {
+    _id: ObjectId("649feba72f1d17796bc698cb"),
+    bookid: 3,
+    Btitle: 'the path',
+    Authors: 'george',
+    price: 1600
+  }
+]
+
+10. Write a MongoDB query to use Update modifiers ($set, $push,  $pull, $upsert) in bookstore.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
